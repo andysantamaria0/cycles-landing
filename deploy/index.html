@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycles | Building in Public Event Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Geist Mono', monospace;
+            background: #FFFFFF;
+            color: #171717;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::before {
+            content: '';
+            position: absolute;
+            background: #FFC700;
+            width: 105%;
+            height: 55%;
+            bottom: 5px;
+            left: -12px;
+            z-index: -1;
+            box-shadow: 0 4px 12px rgba(255, 199, 0, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: 24px;
+            color: #525252;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .presented-by {
+            font-size: 14px;
+            color: #737373;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-logos {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 64px;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .partner-logo img {
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .partner-logo span {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-label {
+            font-size: 14px;
+            color: #737373;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Geist Mono', monospace;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #FFC700;
+            color: #171717;
+        }
+
+        .btn-primary:hover {
+            background: #FFD633;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 199, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: #171717;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #404040;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Repeated CTA Section */
+        .cta-repeat-section {
+            padding: 40px 0;
+            background: #FAFAFA;
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .cta-repeat-section .cta-container {
+            margin-top: 0;
+        }
+
+        /* Startups Section */
+        .startups-section {
+            padding: 60px 0;
+            background: #FFFFFF;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            letter-spacing: -1px;
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .company-card {
+            background: #FAFAFA;
+            border: 2px solid #E5E5E5;
+            border-radius: 0;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .company-card:hover {
+            border-color: #FFC700;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(255, 199, 0, 0.15);
+        }
+
+        .company-logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FFC700 0%, #FFD633 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #171717;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .company-description {
+            font-size: 13px;
+            color: #525252;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .company-stage {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #E5E5E5;
+            border-radius: 0;
+            font-size: 11px;
+            font-weight: 700;
+            color: #525252;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .features-badge {
+            background: #FFC700;
+            color: #171717;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* What to Expect Section */
+        .expect-section {
+            padding: 60px 0;
+            background: #FAFAFA;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .timeline-number {
+            width: 48px;
+            height: 48px;
+            background: #FFC700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .timeline-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .timeline-item p {
+            font-size: 15px;
+            color: #525252;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .timeline-screenshot {
+            border: 2px solid #E5E5E5;
+            background: #FFFFFF;
+            padding: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        .kickoff-graphic {
+            background: #FAFAFA;
+            border: 2px solid #E5E5E5;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .kickoff-icon {
+            width: 80px;
+            height: 80px;
+            background: #FFC700;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .kickoff-details {
+            font-size: 14px;
+            color: #525252;
+            margin-top: 12px;
+        }
+
+        .kickoff-details strong {
+            color: #171717;
+            font-weight: 700;
+        }
+
+        /* Card Stack for Timeline Images */
+        .card-stack {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            cursor: pointer;
+        }
+
+        .card-stack::after {
+            content: 'Click to shuffle';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #FFFFFF;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .card-stack:hover::after {
+            opacity: 1;
+        }
+
+        .card-stack:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .card-stack img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 2px solid #E5E5E5;
+            background: #FFFFFF;
+            padding: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s 0.3s;
+        }
+
+        .card-stack img:first-child {
+            z-index: 2;
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        .card-stack img:last-child {
+            z-index: 1;
+            transform: translate(8px, 8px) rotate(2deg);
+        }
+
+        .card-stack.shuffling img:first-child {
+            transform: translate(10px, 10px) rotate(3deg);
+            z-index: 1;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s;
+        }
+
+        .card-stack.shuffling img:last-child {
+            transform: translate(0, 0) rotate(0deg);
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s;
+        }
+
+        /* Perfect Match Graphic */
+        .match-graphic {
+            background: #FAFAFA;
+            border: 2px solid #E5E5E5;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .match-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .match-entity {
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .match-avatar {
+            width: 80px;
+            height: 80px;
+            background: #E5E5E5;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #525252;
+        }
+
+        .match-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #171717;
+        }
+
+        .match-arrow {
+            font-size: 32px;
+            color: #FFC700;
+            font-weight: 700;
+        }
+
+        /* Why Participate Section */
+        .participate-section {
+            padding: 60px 0;
+            background: #FFFFFF;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .benefit-card {
+            background: #FAFAFA;
+            border-radius: 0;
+            padding: 32px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: #FFC700;
+            transform: translateY(-4px);
+        }
+
+        .benefit-header {
+            background: #FFC700;
+            color: #171717;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-list li {
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #171717;
+        }
+
+        .benefit-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #FFC700;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: #FAFAFA;
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+        }
+
+        footer p {
+            font-size: 15px;
+            color: #737373;
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #171717;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: #FFC700;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #FFFFFF;
+            border-radius: 0;
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #737373;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #171717;
+        }
+
+        .modal h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #171717;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-family: 'Geist Mono', monospace;
+            border: 2px solid #E5E5E5;
+            border-radius: 0;
+            transition: border-color 0.2s;
+            background: #FAFAFA;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFC700;
+            background: #FFFFFF;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .form-note {
+            font-size: 13px;
+            color: #737373;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .success-screen.active {
+            display: block;
+        }
+
+        .success-screen h2 {
+            margin-bottom: 16px;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .company-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero .tagline {
+                font-size: 18px;
+            }
+
+            .company-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .partner-logos {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <img src="commandk-logo.png" alt="command+k logo">
+                </div>
+                <span class="logo-text">command+k</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Cycles</h1>
+            <p class="tagline">The ultimate "building in public" event series for startups and engineers.</p>
+
+            <div class="presented-by">Presented by</div>
+            <div class="partner-logos">
+                <div class="partner-logo">
+                    <img src="commandk-logo.png" alt="command+k">
+                    <span>command+k</span>
+                </div>
+                <div class="partner-logo">
+                    <span style="font-size: 24px;">×</span>
+                </div>
+                <div class="partner-logo">
+                    <img src="fractal logo.png" alt="Fractal Tech">
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <div class="cta-section">
+                    <div class="cta-label">I'm a startup</div>
+                    <button class="btn btn-primary" onclick="openStartupModal()">I want features built</button>
+                </div>
+                <div class="cta-section">
+                    <div class="cta-label">I'm an engineer</div>
+                    <button class="btn btn-secondary" onclick="openEngineerModal()">Let's build!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startups Section -->
+    <section class="startups-section">
+        <div class="container">
+            <h2 class="section-title">Startups in this Cycle!</h2>
+            <div class="company-grid">
+                <!-- Company 1 -->
+                <div class="company-card">
+                    <div class="company-logo-placeholder">P</div>
+                    <div class="company-name">Pulse Analytics</div>
+                    <p class="company-description">Real-time data visualization platform for growth teams</p>
+                    <div class="company-stage">Pre-seed</div>
+                    <div class="features-badge">Features Submitted!</div>
+                </div>
+
+                <!-- Company 2 -->
+                <div class="company-card">
+                    <div class="company-logo-placeholder">N</div>
+                    <div class="company-name">Notifi</div>
+                    <p class="company-description">Smart notification infrastructure with AI-powered routing</p>
+                    <div class="company-stage">Seed</div>
+                    <div class="features-badge">Features Submitted!</div>
+                </div>
+
+                <!-- Company 3 -->
+                <div class="company-card">
+                    <div class="company-logo-placeholder">S</div>
+                    <div class="company-name">Streamline</div>
+                    <p class="company-description">Collaborative workspace for remote engineering teams</p>
+                    <div class="company-stage">Seed</div>
+                    <div class="features-badge">Features Submitted!</div>
+                </div>
+
+                <!-- Company 4 -->
+                <div class="company-card">
+                    <div class="company-logo-placeholder">V</div>
+                    <div class="company-name">VentureKit</div>
+                    <p class="company-description">All-in-one fundraising toolkit for early-stage founders</p>
+                    <div class="company-stage">Series A</div>
+                    <div class="features-badge">Features Submitted!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Repeat Section -->
+    <section class="cta-repeat-section">
+        <div class="container">
+            <div class="cta-container">
+                <div class="cta-section">
+                    <div class="cta-label">I'm a startup</div>
+                    <button class="btn btn-primary" onclick="openStartupModal()">I want features built</button>
+                </div>
+                <div class="cta-section">
+                    <div class="cta-label">I'm an engineer</div>
+                    <button class="btn btn-secondary" onclick="openEngineerModal()">Let's build!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What to Expect Section -->
+    <section class="expect-section">
+        <div class="container">
+            <h2 class="section-title">What to Expect</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-number">1</div>
+                        <h3>Kickoff Session</h3>
+                    </div>
+                    <p>Selected startups have one 30-minute kickoff session with the command+k team to onboard and create their feature sprints.</p>
+                    <div class="kickoff-graphic">
+                        <div class="kickoff-icon">📋</div>
+                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">30-Minute Onboarding</div>
+                        <div class="kickoff-details">
+                            <strong>Sprint Planning</strong> · Feature Scoping · Team Matching
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-number">2</div>
+                        <h3>Perfect Match</h3>
+                    </div>
+                    <p>The ideal engineer matched to the startup that fits best for the work.</p>
+                    <div class="match-graphic">
+                        <div class="match-row">
+                            <div class="match-entity">
+                                <div class="match-avatar">STARTUP</div>
+                                <div class="match-label">Your Company</div>
+                            </div>
+                            <div class="match-arrow">→</div>
+                            <div class="match-entity">
+                                <div class="match-avatar" style="background: #FFC700; color: #171717;">MATCH</div>
+                            </div>
+                            <div class="match-arrow">←</div>
+                            <div class="match-entity">
+                                <div class="match-avatar">ENGINEER</div>
+                                <div class="match-label">Best Fit</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 13px; color: #525252; margin-top: 16px;">
+                            AI-powered matching based on stack, experience & availability
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-number">3</div>
+                        <h3>Build in Public</h3>
+                    </div>
+                    <p>The sprint starts on the same day for everyone, with a building in public activity board tracking progress.</p>
+                    <div class="card-stack" onclick="shuffleCards(this)">
+                        <img src="screenshot of cycles community board.png" alt="Cycles Community Board">
+                        <img src="screenshot cycles community activity.png" alt="Cycles Community Activity">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="timeline-number">4</div>
+                        <h3>Demo Day</h3>
+                    </div>
+                    <p>Sprint ends at The Yard in Williamsburg, Brooklyn at 6pm EST. Each company and engineer co-demo their features, followed by a happy hour and mingling.</p>
+                    <div class="timeline-screenshot">
+                        <img src="screenshot cycles event info.png" alt="Cycles Event Info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Repeat Section -->
+    <section class="cta-repeat-section">
+        <div class="container">
+            <div class="cta-container">
+                <div class="cta-section">
+                    <div class="cta-label">I'm a startup</div>
+                    <button class="btn btn-primary" onclick="openStartupModal()">I want features built</button>
+                </div>
+                <div class="cta-section">
+                    <div class="cta-label">I'm an engineer</div>
+                    <button class="btn btn-secondary" onclick="openEngineerModal()">Let's build!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Participate Section -->
+    <section class="participate-section">
+        <div class="container">
+            <h2 class="section-title">Why Participate</h2>
+            <div class="benefits-grid">
+                <!-- For Companies -->
+                <div class="benefit-card">
+                    <div class="benefit-header">For Companies</div>
+                    <ul class="benefit-list">
+                        <li>Free engineering work on real features</li>
+                        <li>Access to vetted engineering talent</li>
+                        <li>Event exposure and visibility</li>
+                        <li>Onboarded to command+k platform</li>
+                    </ul>
+                </div>
+
+                <!-- For Engineers -->
+                <div class="benefit-card">
+                    <div class="benefit-header">For Engineers</div>
+                    <ul class="benefit-list">
+                        <li>Build real production features</li>
+                        <li>Portfolio-worthy demo projects</li>
+                        <li>Direct exposure to startups</li>
+                        <li>Potential prizes and compensation</li>
+                    </ul>
+                </div>
+
+                <!-- For VCs -->
+                <div class="benefit-card">
+                    <div class="benefit-header">For VCs</div>
+                    <ul class="benefit-list">
+                        <li>Connect portfolio companies to talent</li>
+                        <li>Support ecosystem growth</li>
+                        <li>Build relationships with engineers</li>
+                        <li>Scout emerging technical talent</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Cycles is a command+k event</p>
+            <p>Questions? <a href="mailto:andy@commandk.xyz">andy@commandk.xyz</a></p>
+        </div>
+    </footer>
+
+    <!-- Startup Modal -->
+    <div id="startupModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeStartupModal()">&times;</button>
+            <div id="startupForm">
+                <h2>Join as a Startup</h2>
+                <form id="startup-form" onsubmit="submitStartupForm(event)">
+                    <div class="form-group">
+                        <label for="startup-name">Your Name *</label>
+                        <input type="text" id="startup-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startup-email">Company Email *</label>
+                        <input type="email" id="startup-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startup-linkedin">Company LinkedIn Profile *</label>
+                        <input type="url" id="startup-linkedin" name="linkedin" required placeholder="https://linkedin.com/company/...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startup-stage">Company Stage *</label>
+                        <input type="text" id="startup-stage" name="stage" required placeholder="e.g., Pre-seed, Seed, Series A">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                </form>
+            </div>
+            <div id="startupSuccess" class="success-screen">
+                <div class="success-icon">✅</div>
+                <h2>Thanks!</h2>
+                <p>We'll reach out to book a call if you're chosen for this cycle.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engineer Modal -->
+    <div id="engineerModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeEngineerModal()">&times;</button>
+            <div id="engineerForm">
+                <h2>Join as an Engineer</h2>
+                <p style="font-size: 13px; color: #737373; margin-bottom: 16px;">
+                    Cycles is partnered with Fractal Tech for engineering.
+                </p>
+
+                <form id="engineer-form" onsubmit="submitEngineerForm(event)">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="fractal-accelerator" name="fractal-accelerator">
+                        <label for="fractal-accelerator">Current or past Fractal Tech accelerator engineer</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="fractal-hub" name="fractal-hub">
+                        <label for="fractal-hub">Part of the Fractal Tech hub (Discord or friends of)</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fractal-referral">Fractal referral (Optional)</label>
+                        <input type="text" id="fractal-referral" name="referral" placeholder="Name">
+                    </div>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #E5E5E5;">
+
+                    <p style="font-size: 13px; margin-bottom: 12px; font-weight: 700;">
+                        Not part of Fractal? Share your info:
+                    </p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="engineer-email">Email *</label>
+                            <input type="email" id="engineer-email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="engineer-github">GitHub *</label>
+                            <input type="url" id="engineer-github" name="github" required placeholder="https://github.com/you">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary" style="width: 100%; margin-top: 8px;">Submit</button>
+                </form>
+            </div>
+            <div id="engineerSuccess" class="success-screen">
+                <div class="success-icon">✅</div>
+                <h2>Thank you!</h2>
+                <p>We'll be in touch.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Card Shuffle Function
+        function shuffleCards(cardStack) {
+            cardStack.classList.toggle('shuffling');
+        }
+
+        // Modal Functions
+        function openStartupModal() {
+            document.getElementById('startupModal').classList.add('active');
+            document.getElementById('startupForm').style.display = 'block';
+            document.getElementById('startupSuccess').classList.remove('active');
+        }
+
+        function closeStartupModal() {
+            document.getElementById('startupModal').classList.remove('active');
+            document.getElementById('startup-form').reset();
+        }
+
+        function openEngineerModal() {
+            document.getElementById('engineerModal').classList.add('active');
+            document.getElementById('engineerForm').style.display = 'block';
+            document.getElementById('engineerSuccess').classList.remove('active');
+        }
+
+        function closeEngineerModal() {
+            document.getElementById('engineerModal').classList.remove('active');
+            document.getElementById('engineer-form').reset();
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const startupModal = document.getElementById('startupModal');
+            const engineerModal = document.getElementById('engineerModal');
+
+            if (event.target == startupModal) {
+                closeStartupModal();
+            }
+            if (event.target == engineerModal) {
+                closeEngineerModal();
+            }
+        }
+
+        // Form Submissions
+        // IMPORTANT: Replace 'YOUR_SCRIPT_URL_HERE' with your actual Google Apps Script deployment URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVUpGxXWBr0z__J-ju2Izi2f3mG8qc6gjMXe99qYHGgC5R2UFo590VH245n9No7H3WYQ/exec';
+
+        function submitStartupForm(event) {
+            event.preventDefault();
+
+            // Get form data as URL parameters
+            const formData = new FormData(event.target);
+            const params = new URLSearchParams();
+            params.append('formType', 'startup');
+            for (let [key, value] of formData.entries()) {
+                params.append(key, value);
+            }
+
+            // Submit to Google Sheets
+            fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
+                method: 'GET',
+                mode: 'no-cors'
+            }).then(() => {
+                // Show success screen
+                document.getElementById('startupForm').style.display = 'none';
+                document.getElementById('startupSuccess').classList.add('active');
+
+                // Reset and close after 3 seconds
+                setTimeout(() => {
+                    closeStartupModal();
+                }, 3000);
+            }).catch((error) => {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting the form. Please try again.');
+            });
+        }
+
+        function submitEngineerForm(event) {
+            event.preventDefault();
+
+            // Get form data as URL parameters
+            const formData = new FormData(event.target);
+            const params = new URLSearchParams();
+            params.append('formType', 'engineer');
+            for (let [key, value] of formData.entries()) {
+                params.append(key, value);
+            }
+
+            // Submit to Google Sheets
+            fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
+                method: 'GET',
+                mode: 'no-cors'
+            }).then(() => {
+                // Show success screen
+                document.getElementById('engineerForm').style.display = 'none';
+                document.getElementById('engineerSuccess').classList.add('active');
+
+                // Reset and close after 3 seconds
+                setTimeout(() => {
+                    closeEngineerModal();
+                }, 3000);
+            }).catch((error) => {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting the form. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
