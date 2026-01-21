@@ -732,6 +732,10 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+            }
+
             .hero h1 {
                 font-size: 48px;
             }
@@ -756,16 +760,161 @@
             .modal-content {
                 padding: 32px 24px;
             }
+
+            .card-stack {
+                height: 300px;
+            }
+
+            .benefit-card {
+                padding: 24px;
+            }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+
             .hero h1 {
                 font-size: 36px;
+                letter-spacing: -1px;
+            }
+
+            .hero h1::before {
+                width: 108%;
+                left: -8px;
+            }
+
+            .hero .tagline {
+                font-size: 16px;
+                line-height: 1.4;
             }
 
             .partner-logos {
-                flex-direction: column;
-                gap: 20px;
+                flex-direction: row;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .partner-logo img {
+                height: 24px;
+            }
+
+            .partner-logo span {
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 15px;
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+
+            .startups-section,
+            .expect-section,
+            .participate-section {
+                padding: 40px 0;
+            }
+
+            .cta-repeat-section {
+                padding: 32px 0;
+            }
+
+            .company-card {
+                padding: 24px 16px;
+            }
+
+            .timeline-item {
+                gap: 12px;
+            }
+
+            .timeline-number {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .timeline-item h3 {
+                font-size: 18px;
+            }
+
+            .timeline-item p {
+                font-size: 14px;
+            }
+
+            .card-stack {
+                height: 250px;
+            }
+
+            .kickoff-graphic,
+            .match-graphic {
+                padding: 20px;
+            }
+
+            .kickoff-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 32px;
+            }
+
+            .match-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 12px;
+            }
+
+            .match-arrow {
+                font-size: 24px;
+            }
+
+            .benefit-card {
+                padding: 20px;
+            }
+
+            .modal-content {
+                padding: 24px 16px;
+                width: 95%;
+            }
+
+            .modal h2 {
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            footer {
+                padding: 32px 0;
+            }
+
+            footer p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .card-stack {
+                height: 200px;
             }
         }
     </style>
